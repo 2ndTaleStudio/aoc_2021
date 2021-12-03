@@ -8,9 +8,10 @@ fn main() {
 fn part1() {
     let result = include_str!("./input.txt")
         .lines()
+        .map(|v| v.parse::<i32>().unwrap())
         .enumerate()
         .fold((0, 0), |mut acc, entry| {
-            let current: i32 = entry.1.parse().unwrap();
+            let current: i32 = entry.1;
             if entry.0 > 0 && current > acc.1 {
                 acc.0 += 1;
             }
