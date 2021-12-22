@@ -19,8 +19,14 @@ fn part1() {
             let mut start = points.next().unwrap().split(",");
             let mut end = points.next().unwrap().split(",");
             Line {
-                start: (start.next().unwrap().parse().unwrap(), start.next().unwrap().parse().unwrap()),
-                end: (end.next().unwrap().parse().unwrap(), end.next().unwrap().parse().unwrap()),
+                start: (
+                    start.next().unwrap().parse().unwrap(),
+                    start.next().unwrap().parse().unwrap(),
+                ),
+                end: (
+                    end.next().unwrap().parse().unwrap(),
+                    end.next().unwrap().parse().unwrap(),
+                ),
             }
         })
         .filter(|line| line.start.0 == line.end.0 || line.start.1 == line.end.1)
@@ -56,19 +62,38 @@ fn part2() {
             let mut start = points.next().unwrap().split(",");
             let mut end = points.next().unwrap().split(",");
             Line {
-                start: (start.next().unwrap().parse().unwrap(), start.next().unwrap().parse().unwrap()),
-                end: (end.next().unwrap().parse().unwrap(), end.next().unwrap().parse().unwrap()),
+                start: (
+                    start.next().unwrap().parse().unwrap(),
+                    start.next().unwrap().parse().unwrap(),
+                ),
+                end: (
+                    end.next().unwrap().parse().unwrap(),
+                    end.next().unwrap().parse().unwrap(),
+                ),
             }
         })
         .fold(HashMap::new(), |mut acc, line| {
             let dx = line.end.0 - line.start.0;
             let dy = line.end.1 - line.start.1;
             let steps = i32::max(i32::abs(dx), i32::abs(dy));
-            let x_inc = if dx == 0 { 0 } else if dx > 0 { 1 } else { -1 };
-            let y_inc = if dy == 0 { 0 } else if dy > 0 { 1 } else { -1 };
-            
+            let x_inc = if dx == 0 {
+                0
+            } else if dx > 0 {
+                1
+            } else {
+                -1
+            };
+            let y_inc = if dy == 0 {
+                0
+            } else if dy > 0 {
+                1
+            } else {
+                -1
+            };
+
             for step in 0..=steps {
-                *acc.entry((line.start.0 + x_inc * step, line.start.1 + y_inc * step)).or_insert(0) += 1;
+                *acc.entry((line.start.0 + x_inc * step, line.start.1 + y_inc * step))
+                    .or_insert(0) += 1;
             }
             acc
         })

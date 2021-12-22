@@ -25,7 +25,6 @@ fn part1() {
     println!("Part1: {}", result.0 * result.1);
 }
 
-
 fn part2() {
     let result = include_str!("./input.txt")
         .lines()
@@ -45,4 +44,3 @@ fn part2() {
 
     println!("Part2: {}", result.0 * result.1);
 }
-

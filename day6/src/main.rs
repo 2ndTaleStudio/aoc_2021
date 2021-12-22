@@ -6,10 +6,18 @@ fn main() {
 }
 
 fn part1() {
-    let mut fish = include_str!("./input.txt").split(",").map(|v| v.parse::<i32>().unwrap()).collect::<Vec<_>>();
+    let mut fish = include_str!("./input.txt")
+        .split(",")
+        .map(|v| v.parse::<i32>().unwrap())
+        .collect::<Vec<_>>();
     for _ in 0..80 {
         fish = fish.iter().fold(vec![], |mut acc, age| {
-            let age = if *age == 0 { acc.push(8); 6 } else { age - 1 };
+            let age = if *age == 0 {
+                acc.push(8);
+                6
+            } else {
+                age - 1
+            };
             acc.push(age);
 
             acc
@@ -40,7 +48,9 @@ fn part2() {
         fish_buckets = buckets;
     }
 
-    let fish_count = fish_buckets.into_iter().fold(0, |acc, (_age, count)| acc + count);
+    let fish_count = fish_buckets
+        .into_iter()
+        .fold(0, |acc, (_age, count)| acc + count);
 
     println!("Part 5: {}", fish_count);
 }
