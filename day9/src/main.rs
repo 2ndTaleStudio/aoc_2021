@@ -1,9 +1,3 @@
-use std::{
-    collections::HashMap,
-    ops::{Index, Sub},
-    slice::SliceIndex,
-};
-
 fn main() {
     part1();
     part2();
